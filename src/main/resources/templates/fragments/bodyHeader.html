@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="bodyHeader">
+<script src="https://kit.fontawesome.com/eec00494ec.js" crossorigin="anonymous"></script>
+<script src="/js/main.js" defer></script>
+<link rel="stylesheet" href="/css/style.css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+
+    <div class="header" th:fragment="bodyHeader">
+        <nav class="navbar">
+            <div class="navbar__logo">
+                <!--<i class="fas fa-birthday-cake"></i>-->
+                <a href="/">Hankyungsoo Blog</a>
+            </div>
+            <ul class="navbar__menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="">Portfolio</a></li>
+                <li><a href="/board">Board</a></li>
+                <li><a href="">Notice</a></li>
+                <li><a href="">Contact</a></li>
+            </ul>
+            <ul class="navbar__icons">
+                <li><i class=""></i><a href ="/user/login">Login</a></li>
+                <li><i class=""></i><a href ="/user/join">Join</a></li>
+                <li><a href ="https://www.instagram.com/oneul_.cake/"><i class="fab fa-instagram"></i></a></li>
+                <li><i class="fab fa-blogger"></i></li>
+                <li><i class="far fa-envelope"></i></li>
+            </ul>
+            <a href="#" class="navbar__toggleBtn">
+                <i class="fas fa-bars"></i>
+            </a>
+        </nav>
+    </div>
+</head>
+</html>

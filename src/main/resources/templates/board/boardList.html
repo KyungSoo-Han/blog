@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Board</title>
+</head>
+<body>
+<div th:replace="fragments/bodyHeader :: bodyHeader"/>
+<style>
+
+</style>
+<div class="board_list_wrap" style="margin-top: 40px">
+    <table class="board_list">
+        <caption>게시판 목록</caption>
+        <thead>
+        <tr>
+            <th width="5%">#</th>
+            <th width="70%">제목</th>
+            <th width="10%">등록자</th>
+            <th width="15%">등록일자</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="board : ${board}">
+            <td th:text="${board.id}"></td>
+            <td th:text="${board.title}"></td>
+            <td th:text="${board.user_id.name}"></td>
+            <td th:text="${board.create_dt}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <div style="margin: 0px auto; width: 60%">
+
+        <button type="button" class="btn" onclick="location.href='/boardWrite'">글쓰기</button>
+
+    </div>
+
+</div>
+</body>
+</html>

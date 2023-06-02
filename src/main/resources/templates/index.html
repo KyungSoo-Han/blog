@@ -1,0 +1,16 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org">
+<script> let user_id = [[${session.user_id}]] </script>
+
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader" />
+    <h1>오늘의 떡케이크 오픈예정</h1>
+    <h3>Comming Soon...</h3>
+    <div th:text="${session.user_nm}">John Doe</div>
+    <div th:text="${session.user_email}">John Doe</div>
+</div>
+</body>
+</html>

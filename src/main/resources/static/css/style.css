@@ -134,6 +134,13 @@ caption{
     margin: 0;
 }
 
+.board_write .info dd-error{
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1rem;
+    margin: 0;
+    color: red;
+}
 .board_write .title dt,
 .board_write .info dt{
     width:100px;

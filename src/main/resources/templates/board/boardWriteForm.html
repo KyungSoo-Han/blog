@@ -6,6 +6,13 @@
 </head>
 <body>
 <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+<style>
+
+    .field-error {
+        border-color: #dc3545;
+        color: #dc3545;
+    }
+</style>
 <div class="board_wrap" style="margin-top: 50px">
     <!--
     <div class="board_title">
@@ -14,36 +21,42 @@
     </div>
     -->
     <div class="board_write_wrap" style="margin-top: 50px">
-        <div class="board_write">
-            <div class="title">
-                <dl>
-                    <dt>제목</dt>
-                    <dd><input type="text" placeholder="제목 입력"></dd>
-                </dl>
-            </div>
-            <div class="info">
-                <dl>
-                    <dt>글쓴이</dt>
-                    <dd>
-                        <input type="text" placeholder="작성자 입력">
-                    </dd>
-                </dl>
-                <dl>
-                    <dt>비밀번호</dt>
-                    <dd>
-                        <input type="password" placeholder="비밀번호 입력">
-                    </dd>
-                </dl>
-            </div>
-            <div class="cont">
-                <textarea placeholder="내용 입력"></textarea>
-            </div>
-            <div class="bt_wrap" style="margin-top: 20px">
-                <button class="btn">등록</button>
-                <button class="btn">취소</button>
-            </div>
-        </div>
+        <form action="boardList.html" th:action th:object="${boardDto}" method="post">
+            <div class="board_write">
+                <div class="title">
+                    <dl>
+                        <dt>제목</dt>
+                        <dd><input type="text" id="title" th:field="*{title}" placeholder="제목 입력"></dd>
 
+                    </dl>
+                    <div class="field-error"  th:if="${errors?.containsKey('title')}" th:text="${errors['title']}">
+                    </div>
+                </div>
+                <div class="info">
+                    <dl>
+                        <dt>글쓴이</dt>
+                        <dd>
+                            <input type="text" id="createdId" placeholder="작성자 입력">
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>비밀번호</dt>
+                        <dd>
+                            <input type="password" placeholder="비밀번호 입력">
+                        </dd>
+                    </dl>
+                </div>
+                <div class="cont">
+                    <textarea id="content" th:field="*{content}"  placeholder="내용 입력"></textarea>
+                </div>
+                <div class="field-error"  th:if="${errors?.containsKey('content')}" th:text="${errors['content']}">
+                </div>
+                <div class="bt_wrap" style="margin-top: 20px">
+                    <button class="btn" type="submit">등록</button>
+                    <button class="btn">취소</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 </body>

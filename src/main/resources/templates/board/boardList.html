@@ -24,8 +24,8 @@
         <tr th:each="board : ${board}">
             <td th:text="${board.id}"></td>
             <td th:text="${board.title}"></td>
-            <td th:text="${board.user_id.name}"></td>
-            <td th:text="${board.create_dt}"></td>
+            <td th:text="${board.createdId}"></td>
+            <td th:text="${board.createdDt}"></td>
         </tr>
         </tbody>
     </table>

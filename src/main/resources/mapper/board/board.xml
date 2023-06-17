@@ -10,6 +10,14 @@
                         )
     </insert>
 
+    <select id="getBoard" parameterType="Long" resultType="kr.hankyungsoo.blog.board.dto.BoardDto">
+        select  id, title, content, view_cnt, created_id, created_dt
+        from t_board
+        where id = #{id}
+        order by id desc
+
+    </select>
+
     <select id="boardList" parameterType="String" resultType="kr.hankyungsoo.blog.board.dto.BoardDto">
         select  id, title, content, view_cnt, created_id, created_dt
         from t_board

@@ -8,6 +8,6 @@ import java.util.List;
 @Mapper
 public interface BoardMapper {
     void boardSave(BoardDto boardDto);
-
+    BoardDto getBoard (Long id);
     List<BoardDto> boardList(String title);
 }

@@ -7,10 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.HashMap;
@@ -24,10 +21,11 @@ public class BoardController {
 
     private final BoardService boardService;
 
-    @GetMapping("/boardWrite")
-    public String boardForm(Model model) {
+    @GetMapping("/boardWrite/{id}")
+    public String boardForm(Model model, @PathVariable(required = false) Long id) {
        //String id = session.getAttribute("user_id") == null ? (String) session.getAttribute("user_id") : "";
-        model.addAttribute("boardDto", new BoardDto());
+        BoardDto board = boardService.getBoard(id);
+        model.addAttribute("board", board);
         return "board/boardWriteForm";
     }
 

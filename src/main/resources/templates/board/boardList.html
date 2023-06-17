@@ -22,8 +22,8 @@
         </thead>
         <tbody>
         <tr th:each="board : ${board}">
-            <a href ="" ><td th:text="${board.id}"></td></a>
-            <td th:text="${board.title}"></td>
+            <td th:text="${board.id}"></td>
+            <td><a href ="boardWriteForm.html" th:href="@{|/boardWrite/${board.id}|}"  th:text="${board.title}"></a></td>
             <td th:text="${board.createdId}"></td>
             <td th:text="${board.createdDt}"></td>
         </tr>

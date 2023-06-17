@@ -32,20 +32,20 @@
                     <div class="field-error"  th:if="${errors?.containsKey('title')}" th:text="${errors['title']}">
                     </div>
                 </div>
-                <div class="info">
-                    <dl>
-                        <dt>글쓴이</dt>
-                        <dd>
-                            <input type="text" id="createdId" placeholder="작성자 입력">
-                        </dd>
-                    </dl>
-                    <dl>
-                        <dt>비밀번호</dt>
-                        <dd>
-                            <input type="password" placeholder="비밀번호 입력">
-                        </dd>
-                    </dl>
-                </div>
+               <div class="info">
+                   <!--   <dl>
+                         <dt>글쓴이</dt>
+                         <dd>
+                             <input type="text" id="createdId" placeholder="작성자 입력">
+                         </dd>
+                     </dl>
+                     <dl>
+                         <dt>비밀번호</dt>
+                         <dd>
+                             <input type="password" placeholder="비밀번호 입력">
+                         </dd>
+                     </dl>-->
+                 </div>
                 <div class="cont">
                     <textarea id="content" th:field="*{content}"  placeholder="내용 입력"></textarea>
                 </div>

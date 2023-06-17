@@ -10,6 +10,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.HashMap;
@@ -31,7 +32,9 @@ public class BoardController {
     }
 
     @GetMapping("/board")
-    public String list() {
+    public String boardList(Model model) {
+        List<BoardDto> board = boardService.boardList("");
+        model.addAttribute("board",board);
         return "board/boardList";
     }
 

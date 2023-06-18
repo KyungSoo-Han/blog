@@ -46,11 +46,16 @@ body{
     margin-right:110px;*/
     font-family: 'Source Sans Pro';
 }
+
 a {
+    text-decoration: none;
+    color: black;
+}
+
+.navbar__menu a {
     text-decoration: none;
     color:white;
 }
-
 .btn {
     width: 60px;
     margin-top: 5px;

@@ -7,4 +7,5 @@ import java.util.List;
 public interface BoardService {
     void boardSave(BoardDto boardDto);
     List<BoardDto> boardList(String title);
+    BoardDto getBoard (Long id);
 }

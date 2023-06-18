@@ -23,6 +23,12 @@ public class BoardController {
 
     private final BoardService boardService;
 
+    @GetMapping("/boardWrite")
+    public String boardForm(Model model) {
+        //String id = session.getAttribute("user_id") == null ? (String) session.getAttribute("user_id") : "";
+        model.addAttribute("board", new BoardDto());
+        return "board/boardWriteForm";
+    }
     @GetMapping("/boardWrite/{id}")
     public String boardForm(Model model, @PathVariable(required = false) Long id) {
        //String id = session.getAttribute("user_id") == null ? (String) session.getAttribute("user_id") : "";

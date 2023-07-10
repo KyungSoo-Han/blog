@@ -25,6 +25,7 @@ public class BoardController {
 
     @GetMapping("/boardWrite")
     public String boardForm(Model model) {
+
         model.addAttribute("board", new BoardDto());
         return "board/boardWriteForm";
     }
@@ -43,7 +44,7 @@ public class BoardController {
     }
 
     @PostMapping("/boardWrite")
-    public String boardSave(@ModelAttribute BoardDto boardDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model){
+    public String boardSave(@ModelAttribute BoardDto boardDto, BindingResult bindingResult){
 
         if(!StringUtils.hasText(boardDto.getTitle())) {
             bindingResult.addError(new FieldError("boardDto","title","제목은 필수입니다."));

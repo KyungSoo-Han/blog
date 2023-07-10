@@ -6,8 +6,14 @@
         insert into t_board(
                             title, content, view_cnt, created_id, created_dt
         )values (
-                 #{title}, #{content}, #{viewCnt}, #{createdId}, #{createdDt}
-                        )
+                 #{title}, #{content}, #{viewCnt}, #{createdId}, #{createdDt})
+
+        ON DUPLICATE KEY UPDATE
+            title = #{title},
+            content = #{content},
+            modified_id =#{modifiedId},
+            modified_dt = now()
+
     </insert>
 
     <select id="getBoard" parameterType="Long" resultType="kr.hankyungsoo.blog.board.dto.BoardDto">

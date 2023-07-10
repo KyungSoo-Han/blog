@@ -23,15 +23,15 @@
         <tbody>
         <tr th:each="board : ${board}">
             <td th:text="${board.id}"></td>
-            <td><a href ="boardWriteForm.html" th:href="@{|/boardWrite/${board.id}|}"  th:text="${board.title}"></a></td>
-            <td th:text="${board.createdId}"></td>
+            <td><a href ="boardUpdateForm.html" th:href="@{|/board/${board.id}|}" th:text="${board.title}"></a></td>
+            <td th:text="${board.userId}"></td>
             <td th:text="${board.createdDt}"></td>
         </tr>
         </tbody>
     </table>
     <div style="margin: 0px auto; width: 60%">
 
-        <button type="button" class="btn" onclick="location.href='/boardWrite'">글쓰기</button>
+        <button type="button" class="btn" onclick="location.href='/boardInsert'">글쓰기</button>
 
     </div>
 

@@ -12,9 +12,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @Controller
@@ -23,17 +21,17 @@ public class BoardController {
 
     private final BoardService boardService;
 
-    @GetMapping("/boardWrite")
+    @GetMapping("/boardInsert")
     public String boardForm(Model model) {
 
         model.addAttribute("board", new BoardDto());
-        return "board/boardWriteForm";
+        return "board/boardInsertForm";
     }
-    @GetMapping("/boardWrite/{id}")
+    @GetMapping("/board/{id}")
     public String boardForm(Model model, @PathVariable(required = false) Long id) {
         BoardDto board = boardService.getBoard(id);
         model.addAttribute("board", board);
-        return "board/boardWriteForm";
+        return "board/boardUpdateForm";
     }
 
     @GetMapping("/board")
@@ -43,8 +41,8 @@ public class BoardController {
         return "board/boardList";
     }
 
-    @PostMapping("/boardWrite")
-    public String boardSave(@ModelAttribute BoardDto boardDto, BindingResult bindingResult){
+    @PostMapping("/boardInsert")
+    public String boardInsert(@ModelAttribute BoardDto boardDto, BindingResult bindingResult){
 
         if(!StringUtils.hasText(boardDto.getTitle())) {
             bindingResult.addError(new FieldError("boardDto","title","제목은 필수입니다."));
@@ -54,12 +52,33 @@ public class BoardController {
             bindingResult.addError(new FieldError("boardDto","content","내용은 필수입니다."));
         }
 
-        if (!bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             log.info("errors = {} ", bindingResult);
-            return "board/boardWriteForm";
+            return "board/boardInsertForm";
         }
-        boardService.boardSave(boardDto);
+        boardService.boardInsert(boardDto);
 
-        return "board/boardWriteForm";
+        //redirectAttributes.addAttribute("id", boardDto.getId());
+        //return "redirect:/board/{id}";
+        return "redirect:/board";
+    }
+    @PostMapping("/boardUpdate")
+    public String boardUpdate(@ModelAttribute BoardDto boardDto, BindingResult bindingResult){
+
+        if(!StringUtils.hasText(boardDto.getTitle())) {
+            bindingResult.addError(new FieldError("boardDto","title","제목은 필수입니다."));
+        }
+
+        if(!StringUtils.hasText(boardDto.getContent())) {
+            bindingResult.addError(new FieldError("boardDto","content","내용은 필수입니다."));
+        }
+
+        if (bindingResult.hasErrors()) {
+            log.info("errors = {} ", bindingResult);
+            return "board/boardUpdateForm";
+        }
+        boardService.boardUpdate(boardDto);
+
+        return "redirect:/board/"+boardDto.getId();
     }
 }

@@ -2,19 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.hankyungsoo.blog.board.mapper.BoardMapper">
 
-    <insert id="boardSave" parameterType="kr.hankyungsoo.blog.board.dto.BoardDto" useGeneratedKeys="true" keyColumn="id">
+    <insert id="boardInsert" parameterType="kr.hankyungsoo.blog.board.dto.BoardDto" useGeneratedKeys="true" keyProperty="id">
         insert into t_board(
-                            title, content, view_cnt, created_id, created_dt
+                 title, content, view_cnt, created_id, created_dt
         )values (
-                 #{title}, #{content}, #{viewCnt}, #{createdId}, #{createdDt})
+                 #{title}, #{content}, #{viewCnt}, #{userId}, now())
 
-        ON DUPLICATE KEY UPDATE
-            title = #{title},
-            content = #{content},
-            modified_id =#{modifiedId},
-            modified_dt = now()
 
     </insert>
+
+    <update id="boardUpdate" parameterType="kr.hankyungsoo.blog.board.dto.BoardDto">
+        update t_board
+        set title = #{title}, content = #{content},  modified_id =#{userId}, modified_dt = now()
+        where id = #{id}
+    </update>
 
     <select id="getBoard" parameterType="Long" resultType="kr.hankyungsoo.blog.board.dto.BoardDto">
         select  id, title, content, view_cnt, created_id, created_dt

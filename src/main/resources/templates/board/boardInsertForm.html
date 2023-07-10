@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>게시판 글쓰기</title>
+</head>
+<body>
+<div th:replace="fragments/bodyHeader :: bodyHeader"/>
+<style>
+
+    .field-error {
+        border-color: #dc3545;
+        color: #dc3545;
+    }
+</style>
+<div class="board_wrap" style="margin-top: 50px">
+    <!--
+    <div class="board_title">
+        <h2><strong>게시판</strong></h2>
+        <p>자유롭게 글을 남겨주세요.</p>
+    </div>
+    -->
+    <div class="board_write_wrap" style="margin-top: 50px">
+        <form action="boardList.html" th:action th:object="${board}" method="post">
+            <div class="board_write">
+                <div class="title">
+                    <dl>
+                        <dt>제목</dt>
+                        <dd><input type="text" id="title" th:field="*{title}" placeholder="제목 입력"></dd>
+                    </dl>
+                    <div class="field-error" th:error="*{title}" >
+                    </div>
+                </div>
+                <hr>
+                <div class="cont">
+                    <dl>
+                        <dt>내용</dt>
+                        <dd>
+                            <textarea id="content"  th:field="*{content}"  placeholder="내용 입력"></textarea>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="field-error" th:error="*{content}" >
+                </div>
+                <div class="bt_wrap" style="margin-top: 20px">
+                    <button class="btn" type="submit">등록</button>
+                    <button class="btn" type="reset">취소</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -21,26 +21,32 @@
     </div>
     -->
     <div class="board_write_wrap" style="margin-top: 50px">
-        <form action="boardList.html" th:action th:object="${board}" method="post">
+        <form action="boardList.html" th:action="@{/boardUpdate}" th:object="${board}" method="post">
             <div class="board_write">
                 <div class="title">
                     <dl>
                         <dt>제목</dt>
                         <dd><input type="text" id="title" th:field="*{title}" placeholder="제목 입력"></dd>
+                        <dd><input type="text" id="id" th:field="*{id}"></dd>
 
                     </dl>
                     <div class="field-error" th:error="*{title}" >
                     </div>
                 </div>
-
+                <hr>
                 <div class="cont">
-                    <textarea id="content" th:field="*{content}"  placeholder="내용 입력"></textarea>
+                    <dl>
+                        <dt>내용</dt>
+                        <dd>
+                            <textarea id="content"  th:field="*{content}"  placeholder="내용 입력"></textarea>
+                        </dd>
+                    </dl>
                 </div>
                 <div class="field-error" th:error="*{content}" >
                 </div>
                 <div class="bt_wrap" style="margin-top: 20px">
-                    <button class="btn" type="submit">등록</button>
-                    <button class="btn">취소</button>
+                    <button class="btn" type="submit">수정</button>
+                    <button class="btn" type="reset">취소</button>
                 </div>
             </div>
         </form>

@@ -21,7 +21,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="board : ${board}">
+        <tr th:each="board : ${board.getList()}">
             <td th:text="${board.id}"></td>
             <td><a href ="boardUpdateForm.html" th:href="@{|/board/${board.id}|}" th:text="${board.title}"></a></td>
             <td th:text="${board.userId}"></td>
@@ -34,7 +34,25 @@
         <button type="button" class="btn" onclick="location.href='/boardInsert'">글쓰기</button>
 
     </div>
-
+    <div style="margin: 0px auto; width: 60%" class="page_div">
+            <ul>
+                <!-- getPrePage : 이전 페이지 -->
+                <li th:classappend="${board.getPrePage() == 0} ? 'disabled'">
+                    <!-- href: /page?pageNum=이전페이지&keyword=검색분류&search=검색어 -->
+                    <a th:href="@{/board(pageNum=${board.getPrePage()})}"><<</a>
+                </li>
+                <!-- getNavigateFirstPage() : 페이징의 처음 숫자 getNavigateLastPage : 페이징의 마지막 숫자를 이용해 페이징 숫자 출력 -->
+                <!-- href : /page?pageNum=선택한 페이지&keyword=검색분류&search=검색어 -->
+                <li th:each="page: ${#numbers.sequence(board.getNavigateFirstPage(), board.getNavigateLastPage())}" >
+                    <a th:text="${page}" th:href="@{/board(pageNum=${page})}" th:classappend="${page == board.getPageNum()} ? 'active'"></a>
+                </li>
+                <!-- getPrePage : 다음 페이지 -->
+                <li th:classappend="${board.getNextPage() == 0} ? 'disabled'">
+                    <!-- href: /page?pageNum=다음페이지&keyword=검색분류&search=검색어 -->
+                    <a th:href="@{/board(pageNum=${board.getNextPage()})}">>></a>
+                </li>
+            </ul>
+    </div>
 </div>
 </body>
 </html>

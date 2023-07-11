@@ -1,5 +1,7 @@
 package kr.hankyungsoo.blog.board.service;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import kr.hankyungsoo.blog.board.dto.BoardDto;
 import kr.hankyungsoo.blog.board.mapper.BoardMapper;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +33,9 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public List<BoardDto> boardList(String title) {
+    public Page<BoardDto> boardList(int pageNum, String title) {
+
+        PageHelper.startPage(pageNum, 5);
         return boardMapper.boardList(title);
     }
 }

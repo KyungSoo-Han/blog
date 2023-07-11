@@ -1,5 +1,7 @@
 package kr.hankyungsoo.blog.board.controller;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import kr.hankyungsoo.blog.board.dto.BoardDto;
 import kr.hankyungsoo.blog.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -34,9 +36,14 @@ public class BoardController {
         return "board/boardUpdateForm";
     }
 
-    @GetMapping("/board")
-    public String boardList(Model model) {
-        List<BoardDto> board = boardService.boardList("");
+    @GetMapping(value = {"/board"})
+    public String boardList( Model model, @RequestParam(required = false) Integer pageNum) {
+
+        if(pageNum == null)
+            pageNum = 1;
+        log.info(pageNum.toString());
+        PageInfo<BoardDto> board = new PageInfo<>(boardService.boardList(pageNum, ""));
+        log.info(board.toString());
         model.addAttribute("board",board);
         return "board/boardList";
     }

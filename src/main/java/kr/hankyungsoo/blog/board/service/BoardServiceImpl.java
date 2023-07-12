@@ -35,7 +35,7 @@ public class BoardServiceImpl implements BoardService{
     @Override
     public Page<BoardDto> boardList(int pageNum, String title) {
 
-        PageHelper.startPage(pageNum, 5);
+        PageHelper.startPage(pageNum, 10);
         return boardMapper.boardList(title);
     }
 }

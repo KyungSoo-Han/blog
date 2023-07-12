@@ -11,6 +11,11 @@
 </style>
 <div class="board_list_wrap" style="margin-top: 40px">
     <table class="board_list">
+        <div style="margin: 10px auto; width: 60%">
+
+            <button type="button" class="btn" onclick="location.href='/boardInsert'">글쓰기</button>
+
+        </div>
         <caption>게시판 목록</caption>
         <thead>
         <tr>
@@ -28,13 +33,9 @@
             <td th:text="${board.createdDt}"></td>
         </tr>
         </tbody>
+
     </table>
-    <div style="margin: 0px auto; width: 60%">
-
-        <button type="button" class="btn" onclick="location.href='/boardInsert'">글쓰기</button>
-
-    </div>
-    <div style="margin: 0px auto; width: 60%" class="page_div">
+    <div style="margin: 0px auto; width: 20%" class="page_div">
             <ul>
                 <!-- getPrePage : 이전 페이지 -->
                 <li th:classappend="${board.getPrePage() == 0} ? 'disabled'">

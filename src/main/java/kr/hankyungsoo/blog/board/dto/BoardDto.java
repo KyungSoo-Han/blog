@@ -11,7 +11,9 @@ public class BoardDto {
     private String title;
     private String content;
     private String userId;
+    private String orgFileName;
+    private String srvFileName;
     private int viewCnt;
-    private LocalDateTime createdDt;
-    private LocalDateTime modifiedDt;
+    private String createdDt;
+    private String modifiedDt;
 }

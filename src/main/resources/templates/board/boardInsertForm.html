@@ -21,7 +21,7 @@
     </div>
     -->
     <div class="board_write_wrap" style="margin-top: 50px">
-        <form action="boardList.html" th:action th:object="${board}" method="post">
+        <form action="boardList.html" th:action th:object="${board}" method="post" enctype="multipart/form-data">
             <div class="board_write">
                 <div class="title">
                     <dl>
@@ -42,6 +42,8 @@
                 </div>
                 <div class="field-error" th:error="*{content}" >
                 </div>
+
+                <li>이미지 파일들<input type="file" multiple="multiple" name="file" ></li>
                 <div class="bt_wrap" style="margin-top: 20px">
                     <button class="btn" type="submit">등록</button>
                     <button class="btn" type="reset">취소</button>

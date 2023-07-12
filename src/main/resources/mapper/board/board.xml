@@ -4,9 +4,9 @@
 
     <insert id="boardInsert" parameterType="kr.hankyungsoo.blog.board.dto.BoardDto" useGeneratedKeys="true" keyProperty="id">
         insert into t_board(
-                 title, content, view_cnt, created_id, created_dt
+                 title, content, view_cnt, orgFileName, srvFileName, created_id, created_dt
         )values (
-                 #{title}, #{content}, #{viewCnt}, #{userId}, now())
+                 #{title}, #{content}, #{viewCnt}, #{orgFileName},#{srvFileName},#{userId}, now())
 
 
     </insert>
@@ -26,7 +26,8 @@
     </select>
 
     <select id="boardList" parameterType="String" resultType="kr.hankyungsoo.blog.board.dto.BoardDto">
-        select  id, title, content, view_cnt, created_id, created_dt
+        select  id, title, content, view_cnt, orgFileName, srvFileName, created_id,
+                DATE_FORMAT(created_dt, '%Y-%m-%d %h:%m:%s')  as created_dt
         from t_board
         order by id desc
 

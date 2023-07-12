@@ -4,16 +4,22 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import kr.hankyungsoo.blog.board.dto.BoardDto;
 import kr.hankyungsoo.blog.board.service.BoardService;
+import kr.hankyungsoo.blog.file.FileService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @Slf4j
@@ -22,6 +28,7 @@ import java.util.List;
 public class BoardController {
 
     private final BoardService boardService;
+    private final FileService fileService;
 
     @GetMapping("/boardInsert")
     public String boardForm(Model model) {
@@ -49,7 +56,7 @@ public class BoardController {
     }
 
     @PostMapping("/boardInsert")
-    public String boardInsert(@ModelAttribute BoardDto boardDto, BindingResult bindingResult){
+    public String boardInsert(@ModelAttribute BoardDto boardDto, @RequestParam MultipartFile file, BindingResult bindingResult) throws IOException {
 
         if(!StringUtils.hasText(boardDto.getTitle())) {
             bindingResult.addError(new FieldError("boardDto","title","제목은 필수입니다."));
@@ -63,10 +70,12 @@ public class BoardController {
             log.info("errors = {} ", bindingResult);
             return "board/boardInsertForm";
         }
+
+        boardDto.setOrgFileName(file.getOriginalFilename());
+        boardDto.setSrvFileName(fileService.uploadFile(file));
+
         boardService.boardInsert(boardDto);
 
-        //redirectAttributes.addAttribute("id", boardDto.getId());
-        //return "redirect:/board/{id}";
         return "redirect:/board";
     }
     @PostMapping("/boardUpdate")

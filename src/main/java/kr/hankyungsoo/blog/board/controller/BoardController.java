@@ -95,6 +95,8 @@ public class BoardController {
         }
         boardService.boardUpdate(boardDto);
 
-        return "redirect:/board/"+boardDto.getId();
+        //return "redirect:/board/"+boardDto.getId();
+
+        return "redirect:/board";
     }
 }

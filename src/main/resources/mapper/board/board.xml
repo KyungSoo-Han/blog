@@ -13,7 +13,7 @@
 
     <update id="boardUpdate" parameterType="kr.hankyungsoo.blog.board.dto.BoardDto">
         update t_board
-        set title = #{title}, content = #{content},  modified_id =#{userId}, modified_dt = now()
+        set title = #{title}, content = #{content}, modified_dt = now()
         where id = #{id}
     </update>
 

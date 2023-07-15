@@ -4,6 +4,11 @@
 <head>
     <title>게시판 글쓰기</title>
 </head>
+<script>
+    function gotoList(){
+
+    }
+</script>
 <body>
 <div th:replace="fragments/bodyHeader :: bodyHeader"/>
 <style>
@@ -46,7 +51,7 @@
                 </div>
                 <div class="bt_wrap" style="margin-top: 20px">
                     <button class="btn" type="submit">수정</button>
-                    <button class="btn" type="reset">취소</button>
+                    <button class="btn" type="back" th:onclick="|location.href='@{/board}'|">목록</button>
                 </div>
             </div>
         </form>

@@ -43,10 +43,19 @@
                 <div class="field-error" th:error="*{content}" >
                 </div>
 
-                <li>파일 <input type="file" multiple="multiple" name="file" ></li>
+                <div class="cont">
+                    <dl>
+                        <dt>
+                            파일
+                        </dt>
+                        <dd>
+                            <input type="file" multiple="multiple" name="file" >
+                        </dd>
+                    </dl>
+                </div>
                 <div class="bt_wrap" style="margin-top: 20px">
                     <button class="btn" type="submit">등록</button>
-                    <button class="btn" type="back" th:onclick="|location.href='@{/board}'|">목록</button>
+                    <button class="btn" type="button" th:onclick="|location.href='@{/board}'|">목록</button>
                 </div>
             </div>
         </form>

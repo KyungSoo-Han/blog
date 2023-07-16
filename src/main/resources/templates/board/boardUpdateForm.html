@@ -26,13 +26,13 @@
     </div>
     -->
     <div class="board_write_wrap" style="margin-top: 50px">
-        <form action="boardList.html" th:action="@{/boardUpdate}" th:object="${board}" method="post">
+        <form action="boardList.html" th:action="@{/boardUpdate}" th:object="${board}" method="post"  enctype="multipart/form-data">
             <div class="board_write">
                 <div class="title">
                     <dl>
                         <dt>제목</dt>
                         <dd><input type="text" id="title" th:field="*{title}" placeholder="제목 입력"></dd>
-                        <dd><input type="text" id="id" th:field="*{id}"></dd>
+                        <dd><input type="text" id="id" th:field="*{id}" hidden="true"></dd>
 
                     </dl>
                     <div class="field-error" th:error="*{title}" >
@@ -49,14 +49,26 @@
                 </div>
                 <div class="field-error" th:error="*{content}" >
                 </div>
-                <li>
-                    파일 <input type="file" multiple="multiple" name="file" >
-                </li>
-                <input type="text" id="orgFileName" th:field="*{orgFileName}">
-                <input type="text" id="srvFileName" th:field="*{srvFileName}">
+
+                    <!--<input type="file" multiple="multiple" name="file" >-->
+                <div class="cont">
+                    <dl>
+                        <dt>
+                            파일
+                        </dt>
+                        <dd>
+                            <a th:href ="|/board/download/v2/*{id}|" th:if="*{srvFileName != ''}" th:text="*{orgFileName}"></a>
+                            <a th:href ="|/board/filedelete/*{id}|" th:if="*{srvFileName != ''}" style="color: red; font-size: small; margin: 4px">삭제</a>
+
+                            <input type="file" multiple="multiple" name="file" th:if="*{srvFileName == ''}">
+                        </dd>
+                    </dl>
+                </div>
+                <!--<input type="text" id="orgFileName" th:field="*{orgFileName}">
+                <input type="text" id="srvFileName" th:field="*{srvFileName}">-->
                 <div class="bt_wrap" style="margin-top: 20px">
                     <button class="btn" type="submit">수정</button>
-                    <button class="btn" type="back" th:onclick="|location.href='@{/board}'|">목록</button>
+                    <button class="btn" type="button"  th:onclick="|location.href='@{/board}'|">목록</button>
                 </div>
             </div>
         </form>

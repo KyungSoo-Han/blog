@@ -10,4 +10,6 @@ public interface BoardService {
     void boardUpdate(BoardDto boardDto);
     Page<BoardDto> boardList(int pageNum, String title);
     BoardDto getBoard (Long id);
+
+    void fileClear(BoardDto boardDto);
 }

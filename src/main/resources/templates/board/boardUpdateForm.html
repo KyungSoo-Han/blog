@@ -49,6 +49,11 @@
                 </div>
                 <div class="field-error" th:error="*{content}" >
                 </div>
+                <li>
+                    파일 <input type="file" multiple="multiple" name="file" >
+                </li>
+                <input type="text" id="orgFileName" th:field="*{orgFileName}">
+                <input type="text" id="srvFileName" th:field="*{srvFileName}">
                 <div class="bt_wrap" style="margin-top: 20px">
                     <button class="btn" type="submit">수정</button>
                     <button class="btn" type="back" th:onclick="|location.href='@{/board}'|">목록</button>

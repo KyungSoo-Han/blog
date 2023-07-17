@@ -1,4 +1,4 @@
-package kr.hankyungsoo.blog.user;
+package kr.hankyungsoo.blog.user.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -87,7 +87,7 @@ public class BoardController {
         return "redirect:/board";
     }
     @PostMapping("/boardUpdate")
-    public String boardUpdate(@ModelAttribute BoardDto boardDto,@RequestParam MultipartFile file,  BindingResult bindingResult) throws IOException {
+    public String boardUpdate(@ModelAttribute BoardDto boardDto,@RequestParam(required = false) MultipartFile file,  BindingResult bindingResult) throws IOException {
 
         if(!StringUtils.hasText(boardDto.getTitle())) {
             bindingResult.addError(new FieldError("boardDto","title","제목은 필수입니다."));
@@ -101,10 +101,10 @@ public class BoardController {
             log.info("errors = {} ", bindingResult);
             return "board/boardUpdateForm";
         }
-
-        boardDto.setOrgFileName(file.getOriginalFilename());
-        boardDto.setSrvFileName(fileService.uploadFile(file));
-
+        if(file!=null) {
+            boardDto.setOrgFileName(file.getOriginalFilename());
+            boardDto.setSrvFileName(fileService.uploadFile(file));
+        }
         boardService.boardUpdate(boardDto);
 
         //return "redirect:/board/"+boardDto.getId();
@@ -127,6 +127,20 @@ public class BoardController {
         UrlResource resource = new UrlResource("file:" + fileService.getFullPath(srvFileName));
 
         String encodedUploadFileName = UriUtils.encode(orgFileName, StandardCharsets.UTF_8);
+        String contentDisposition = "attachment; filename=\"" + encodedUploadFileName + "\"";
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, contentDisposition)
+                .body(resource);
+    }
+
+    @GetMapping("/board/download/v3/{filename}")
+    public ResponseEntity<Resource> downloadFile2(@PathVariable String filename) throws MalformedURLException {
+
+
+        UrlResource resource = new UrlResource("file:" + fileService.getFullPath(filename));
+
+        String encodedUploadFileName = UriUtils.encode(filename, StandardCharsets.UTF_8);
         String contentDisposition = "attachment; filename=\"" + encodedUploadFileName + "\"";
 
         return ResponseEntity.ok()

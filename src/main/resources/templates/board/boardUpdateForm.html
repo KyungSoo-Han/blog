@@ -4,11 +4,6 @@
 <head>
     <title>게시판 글쓰기</title>
 </head>
-<script>
-    function gotoList(){
-
-    }
-</script>
 <body>
 <div th:replace="fragments/bodyHeader :: bodyHeader"/>
 <style>
@@ -18,6 +13,7 @@
         color: #dc3545;
     }
 </style>
+
 <div class="board_wrap" style="margin-top: 50px">
     <!--
     <div class="board_title">
@@ -68,7 +64,7 @@
                 <input type="text" id="srvFileName" th:field="*{srvFileName}">-->
                 <div class="bt_wrap" style="margin-top: 20px">
                     <button class="btn" type="submit">수정</button>
-                    <button class="btn" type="button"  th:onclick="|location.href='@{/board}'|">목록</button>
+                    <button class="btn" type="button"  th:onclick="|javascript:history.back();|">목록</button>
                 </div>
             </div>
         </form>

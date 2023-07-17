@@ -6,14 +6,16 @@
         insert into t_board(
                  title, content, view_cnt, orgFileName, srvFileName, created_id, created_dt
         )values (
-                 #{title}, #{content}, #{viewCnt}, #{orgFileName},#{srvFileName},#{userId}, now())
+                 #{title}, #{content}, #{viewCnt}, ifnull(#{orgFileName},''),ifnull(#{srvFileName},''),#{userId}, now())
 
 
     </insert>
 
     <update id="boardUpdate" parameterType="kr.hankyungsoo.blog.board.dto.BoardDto">
         update t_board
-        set title = #{title}, content = #{content}, modified_dt = now()
+        set title = #{title}, content = #{content}, modified_dt = now(),
+            orgFileName = #{orgFileName},
+            srvFileName = #{srvFileName}
         where id = #{id}
     </update>
 
@@ -32,7 +34,12 @@
         order by id desc
 
     </select>
-
+    <update id="fileClear" parameterType="kr.hankyungsoo.blog.board.dto.BoardDto">
+        update t_board
+        set orgFileName = '',
+            srvFileName = ''
+        where id = #{id}
+    </update>
 </mapper>
 
     

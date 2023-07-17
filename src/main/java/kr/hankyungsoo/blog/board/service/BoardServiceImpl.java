@@ -33,6 +33,11 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
+    public void fileClear(BoardDto boardDto) {
+        boardMapper.fileClear(boardDto);
+    }
+
+    @Override
     public Page<BoardDto> boardList(int pageNum, String title) {
 
         PageHelper.startPage(pageNum, 10);

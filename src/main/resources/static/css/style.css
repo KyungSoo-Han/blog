@@ -123,6 +123,9 @@ caption{
 .board_write .title dl {
     font-size: 0;
 }
+.board_write .cont dl {
+    font-size: 0;
+}
 .board_write .info dl {
     display: inline-block;
     width: 50%;
@@ -138,7 +141,13 @@ caption{
     font-size: 1rem;
     margin: 0;
 }
-
+.board_write .cont dt,
+.board_write .cont dd{
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1rem;
+    margin: 0;
+}
 .board_write .info dd-error{
     display: inline-block;
     vertical-align: middle;
@@ -147,8 +156,9 @@ caption{
     color: red;
 }
 .board_write .title dt,
-.board_write .info dt{
-    width:100px;
+.board_write .info dt,
+.board_write .cont dt{
+    width:50px;
 }
 
 .board_write .title dd{
@@ -169,10 +179,21 @@ caption{
     padding: 15px;
     border-bottom: 1px solid #684823;
 }
+.board_write .cont dt,
+.board_write .cont dd{
+    margin: 0;
+    display: -webkit-inline-flex;
+}
+.board_write .cont dd{
+    width: calc(100% - 50px);
+}
+.board_title .cont #editor #tox tox-tinymce{
+    width: calc(100% - 50px);
+}
 .board_write .cont textarea {
     display: block;
     width: 100%;
-    height: 300px;
+    height: 500px;
     padding: 15px;
     box-sizing: border-box;
     /*border:0;*/

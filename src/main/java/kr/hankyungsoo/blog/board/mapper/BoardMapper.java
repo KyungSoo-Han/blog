@@ -13,4 +13,6 @@ public interface BoardMapper {
     BoardDto getBoard (Long id);
     Page<BoardDto> boardList(String title);
 
+    void fileClear(BoardDto boardDto);
+
 }
